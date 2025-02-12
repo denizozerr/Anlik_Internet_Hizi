@@ -6,6 +6,23 @@ import time
 import queue
 import ctypes
 import speedtest
+import os
+import glob
+
+path = "C:\\Users\\Asus\\Desktop\\Anlik_Internet_Hizi+Speed_Test"  # Kendi dizinine göre değiştir
+files = glob.glob(os.path.join(path, "*.py"))  # Tüm .py dosyalarını bul
+
+for file in files:
+    with open(file, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    new_content = content.replace("builtins", "builtins")  # Değiştir
+
+    with open(file, "w", encoding="utf-8") as f:
+        f.write(new_content)
+
+print("Değiştirme işlemi tamamlandı.")
+
 
 class InternetSpeedApp:
     def __init__(self, root):
@@ -13,7 +30,7 @@ class InternetSpeedApp:
         self.root.title("Anlık İnternet Hızı")
         self.root.geometry("400x300")
         self.root.resizable(True, True)
-        self.root.iconbitmap(r"C:\Users\Asus\Desktop\Anlik_Internet_Hizi+Speed_Test\tatsumaki.ico")
+        self.root.iconbitmap(r"tatsumaki.ico")
 
         try:
             self.root.update_idletasks()
@@ -136,7 +153,7 @@ class InternetSpeedApp:
         app_window.title("Uygulama Verileri")
         app_window.geometry("350x300")
         app_window.configure(bg="#1C1C1C")
-        app_window.iconbitmap(r"C:\Users\Asus\Desktop\Anlik_Internet_Hizi+Speed_Test\tatsumaki.ico")
+        app_window.iconbitmap(r"tatsumaki.ico")
 
         try:
             app_window.update_idletasks()
