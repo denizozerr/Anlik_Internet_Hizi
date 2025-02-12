@@ -9,7 +9,7 @@ import speedtest
 import os
 import glob
 
-path = "C:\\Users\\Asus\\Desktop\\Anlik_Internet_Hizi+Speed_Test"  # Kendi dizinine göre değiştir
+path = "Anlik_Internet_Hizi+Speed_Test"  # Kendi dizinine göre değiştir
 files = glob.glob(os.path.join(path, "*.py"))  # Tüm .py dosyalarını bul
 
 for file in files:
