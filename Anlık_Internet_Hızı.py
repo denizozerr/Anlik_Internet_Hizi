@@ -128,6 +128,10 @@ def start_gui():
     root.protocol("WM_DELETE_WINDOW", lambda: (app.stop(), root.destroy()))
     root.mainloop()
 
+<<<<<<< HEAD
 #
+=======
+
+>>>>>>> 3ba151d8efcc1cb2a4c72da4968d77949f138fa5
 if __name__ == "__main__":
     start_gui()
