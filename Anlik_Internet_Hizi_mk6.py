@@ -111,8 +111,11 @@ class InternetSpeedApp:
         try:
             st = speedtest.Speedtest()
             st.get_best_server()
-            download_speed = st.download() / (1024 * 1024)
-            upload_speed = st.upload() / (1024 * 1024)
+            download_speed = st.download()
+            upload_speed = st.upload()
+
+            print(f"Download Speed: {download_speed / 1_000_000:.2f} Mbps")
+            print(f"Upload Speed: {upload_speed / 1_000_000:.2f} Mbps")
             ping = st.results.ping
             self.label_speedtest.config(
                 text=f"Ping: {ping:.2f} ms\nDownload: {download_speed:.2f} Mbps\nUpload: {upload_speed:.2f} Mbps",
@@ -170,3 +173,4 @@ class InternetSpeedApp:
 root = tk.Tk()
 app = InternetSpeedApp(root)
 root.mainloop()
+
