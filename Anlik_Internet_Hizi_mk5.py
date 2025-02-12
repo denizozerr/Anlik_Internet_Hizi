@@ -133,7 +133,7 @@ class InternetSpeedApp:
         finally:
             self.speedtest_button.config(state=tk.NORMAL,text="Speedtest Başlat")  # Buton tekrar etkinleştirilir ve eski metin gelir
 
-
+#
 if __name__ == "__main__":
     root = tk.Tk()
     app = InternetSpeedApp(root)
