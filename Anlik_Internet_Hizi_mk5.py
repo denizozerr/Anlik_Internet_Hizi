@@ -13,7 +13,7 @@ class InternetSpeedApp:
         self.root.title("Anlık İnternet Hızı")
         self.root.geometry("350x350")
         self.root.resizable(True, True)
-        self.root.iconbitmap(r"C:\Users\Asus\Desktop\Anlik_Internet_Hizi+Speed_Test\tatsumaki.ico")
+        self.root.iconbitmap(r"tatsumaki.ico")
 
         try:
             self.root.update_idletasks()
