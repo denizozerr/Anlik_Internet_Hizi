@@ -9,14 +9,14 @@ import speedtest
 import os
 import glob
 
-path = "Anlik_Internet_Hizi+Speed_Test"  # Kendi dizinine göre değiştir
+path = "Anlik_Internet_Hizi+Speed_Test"
 files = glob.glob(os.path.join(path, "*.py"))  # Tüm .py dosyalarını bul
 
 for file in files:
     with open(file, "r", encoding="utf-8") as f:
         content = f.read()
 
-    new_content = content.replace("builtins", "builtins")  # Değiştir
+    new_content = content.replace("builtins", "builtins")  #__builtin__ fonksiyonu python 2 ile çalışıp python 3 ile çalışmadığından değiştirdik buradan manuel olarak kütüphaneden de değiştirildi
 
     with open(file, "w", encoding="utf-8") as f:
         f.write(new_content)
@@ -31,7 +31,7 @@ class InternetSpeedApp:
         self.root.geometry("400x300")
         self.root.resizable(True, True)
         self.root.iconbitmap(r"tatsumaki.ico")
-
+#%% windows karanlık mod title için
         try:
             self.root.update_idletasks()
             hwnd = ctypes.windll.user32.GetParent(self.root.winfo_id())
@@ -45,7 +45,6 @@ class InternetSpeedApp:
         self.frame = Frame(self.root, bg="#1C1C1C")
         self.frame.pack(expand=True, fill=tk.BOTH)
 
-        # CPU ve RAM etiketleri kutu içine alındı
         self.cpu_frame = Frame(self.frame, bg="#333333", bd=2, relief="solid")
         self.cpu_frame.pack(side="left", padx=10, pady=5)
 
@@ -60,22 +59,22 @@ class InternetSpeedApp:
 
         self.update_resource_usage()
 
-        self.label_download = Label(self.frame, text="Download: - MB/s", font=("Calibri", 16, "bold"), fg="cyan", bg="#1C1C1C")
+        self.label_download = Label(self.frame, text="Download: - MB/s", font=("Calibri", 16, "bold"), fg="cyan", bg="#333333", relief="solid", bd=2)
         self.label_download.pack(pady=4, anchor='center')
 
-        self.label_indir_mbps = Label(self.frame, text="Download: - Mbps", font=("Calibri", 10), fg="yellow",bg="#1C1C1C")
+        self.label_indir_mbps = Label(self.frame, text="Download: - Mbps", font=("Calibri", 10), fg="yellow",bg="#333333", relief="solid", bd=2)
         self.label_indir_mbps.pack(pady=2, anchor='center')
 
-        self.label_upload = Label(self.frame, text="Upload: - MB/s", font=("Calibri", 16, "bold"), fg="red", bg="#1C1C1C")
+        self.label_upload = Label(self.frame, text="Upload: - MB/s", font=("Calibri", 16, "bold"), fg="red", bg="#333333", relief="solid", bd=2)
         self.label_upload.pack(pady=4, anchor='center')
 
-        self.label_yukle_mbps = Label(self.frame, text="Upload: - Mbps", font=("Calibri", 10), fg="yellow", bg="#1C1C1C")
+        self.label_yukle_mbps = Label(self.frame, text="Upload: - Mbps", font=("Calibri", 10), fg="yellow", bg="#333333", relief="solid", bd=2)
         self.label_yukle_mbps.pack(pady=2, anchor='center')
 
         self.label_speedtest = Label(self.frame, text="Speedtest Bekleniyor...", font=("Calibri", 12), fg="cyan", bg="#1C1C1C")
         self.label_speedtest.pack(pady=4, anchor='center')
 
-        self.speedtest_button = Button(self.frame, text="Speedtest Başlat", command=self.run_speedtest, font=("Calibri", 12), bg="blue", fg="white")
+        self.speedtest_button = Button(self.frame, text="Speedtest Başlat", command=self.run_speedtest, font=("Calibri", 12), bg="dark blue", fg="white")
         self.speedtest_button.pack(pady=5, anchor='center')
 
         # Verilerin görüntüleneceği uygulama verileri butonu
@@ -131,11 +130,11 @@ class InternetSpeedApp:
             download_speed = st.download()
             upload_speed = st.upload()
 
-            print(f"Download Speed: {download_speed / 1_000_000:.2f} Mbps")
-            print(f"Upload Speed: {upload_speed / 1_000_000:.2f} Mbps")
+            print(f"Download Speed: {download_speed / 1_000_000.0:.2f} Mbps")
+            print(f"Upload Speed: {upload_speed / 1_000_000.0:.2f} Mbps")
             ping = st.results.ping
             self.label_speedtest.config(
-                text=f"Ping: {ping:.2f} ms\nDownload: {download_speed:.2f} Mbps\nUpload: {upload_speed:.2f} Mbps",
+                text=f"Ping: {ping:.2f} ms\nDownload: {download_speed / 1e6:.2f} Mbps\nUpload: {upload_speed / 1e6:.2f} Mbps",
                 fg="lime")
         except speedtest.SpeedtestException as e:
             self.label_speedtest.config(text=f"Speedtest Hatası: {e}", fg="red")
