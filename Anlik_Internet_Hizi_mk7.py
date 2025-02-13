@@ -98,7 +98,7 @@ class InternetSpeedApp:
         self.app_data_button = Button(self.frame, text="Uygulama Verilerini Görüntüle", command=self.show_app_data, font=("Calibri", 12), bg="green", fg="white")
         self.app_data_button.pack(pady=10, anchor='center')
 
-        self.label_imza = Label(self.frame, text="Made By Denizzr v.1.6", font=("Calibri", 10, "italic"), fg="magenta", bg="#1C1C1C")
+        self.label_imza = Label(self.frame, text="Made By Denizzr \n v.1.7", font=("Calibri", 10, "italic"), fg="magenta", bg="#1C1C1C")
         self.label_imza.pack(pady=4, anchor='center')
 
         self.queue = queue.Queue()
@@ -219,7 +219,7 @@ class InternetSpeedApp:
 
             label_info = Label(about_window, text="Ağ kullanımı penceresinde sistem başladığından itibaren "
                                                   "uygulamaların kullandığı verileri göstermektedir. \n\n"
-                                                  "Made By Denizzr v.1.6",
+                                                  "Made By Denizzr\n v.1.7",
                                font=("Calibri", 12), fg="white", bg="#1C1C1C", justify="center", wraplength=280)
             label_info.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
