@@ -185,7 +185,7 @@ class InternetSpeedApp:
 
         app_window.mainloop()
 
-## Uygulamayı başlat
+### Uygulamayı başlat
 root = tk.Tk()
 app = InternetSpeedApp(root)
 root.mainloop()
