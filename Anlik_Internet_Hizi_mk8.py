@@ -70,10 +70,10 @@ class InternetSpeedApp:
         self.label_cpu.pack(side="left", padx=4)
 
         self.gpu_frame = Frame(self.frame, bg="#333333", bd=2, relief="solid")
-        self.gpu_frame.pack(side="left", padx=10, pady=5)
+        self.gpu_frame.pack(side="left", padx=10)
 
         self.label_gpu = Label(self.gpu_frame, text="GPU: -%", font=("Calibri", 10), fg="white", bg="#333333")
-        self.label_gpu.pack(side="left", padx=4)
+        self.label_gpu.grid(row=10, column=10, padx=10, pady=5)
 
         self.ram_frame = Frame(self.frame, bg="#333333", bd=2, relief="solid")
         self.ram_frame.pack(side="right", padx=10, pady=5)
@@ -105,7 +105,7 @@ class InternetSpeedApp:
         self.app_data_button = Button(self.frame, text="Uygulama Verilerini Görüntüle", command=self.show_app_data, font=("Calibri", 12), bg="green", fg="white")
         self.app_data_button.pack(pady=10, anchor='center')
 
-        self.label_imza = Label(self.frame, text="Made By Denizzr \n v.1.7", font=("Calibri", 10, "italic"), fg="magenta", bg="#1C1C1C")
+        self.label_imza = Label(self.frame, text="Made By Denizzr \n v.1.8", font=("Calibri", 10, "italic"), fg="magenta", bg="#1C1C1C")
         self.label_imza.pack(pady=4, anchor='center')
 
         self.queue = queue.Queue()
@@ -143,7 +143,10 @@ class InternetSpeedApp:
         gpus = GPUtil.getGPUs()
         if gpus:
             gpu = gpus[0] #ilk gpu yu al
-            gpu_text=(f"GPU: {gpu.load * 100:.0f}% | Memory: {gpu.memoryUsed}/{gpu.memoryTotal} MB")
+            gpu_text=(f"GPU: {gpu.load * 100:.0f}%")
+
+        else:
+            gpu_text = "GPU: N/A"  # GPU yoksa hata almamak için
         self.label_gpu.config(text=gpu_text)
         self.root.after(1000, self.update_resource_usage)
 
@@ -195,7 +198,6 @@ class InternetSpeedApp:
         app_window.iconbitmap(r"tatsumaki.ico")
         app_window.attributes('-topmost', True)
 
-
         # Menü çubuğu oluştur
         menu_bar = tk.Menu(app_window)
         app_window.config(menu=menu_bar)
@@ -231,9 +233,9 @@ class InternetSpeedApp:
 
             label_info = Label(about_window, text="Ağ kullanımı penceresinde sistem başladığından itibaren "
                                                   "uygulamaların kullandığı verileri göstermektedir. \n\n"
-                                                  "Made By Denizzr\n v.1.7",
+                                                  "Made By Denizzr\n v.1.8",
                                font=("Calibri", 12), fg="white", bg="#1C1C1C", justify="center", wraplength=280)
-            label_info.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+            label_info.grid(row=0, column=0, padx=10, pady=10)
 
             close_button = Button(about_window, text="Kapat", command=about_window.destroy,
                                   font=("Calibri", 10), bg="red", fg="white", width=10, height=2)
